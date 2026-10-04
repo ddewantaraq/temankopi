@@ -3,7 +3,7 @@
 Offline-first Bahasa Indonesia PWA for coffee field screening (**Small AI**).
 
 - On-device vision via **TensorFlow.js** (WebGL) — **MobileNetV3Small** trained on **DECAFIA / CoffeeLeaf-CO**
-- Fail-safe: uncertain → ask a penyuluh (no guessing)
+- Fail-safe: uncertain → ask a extension officer (no guessing)
 - Local observations in IndexedDB + store-and-forward sync demo
 - No backend required for the MVP
 
@@ -24,12 +24,12 @@ npm run dev
 
 1. Open https://temankopi.vercel.app on phone (install PWA if prompted)
 2. Airplane mode ON
-3. Periksa Tanaman → foto → gejala → Analisis (local TF.js)
+3. Check Plant → capture photo → symptomps → Analyze (local TF.js)
 4. See next actions + disclaimer (not a diagnosis)
-5. Simpan → Riwayat
-6. Blurry/dark photo → **Belum cukup yakin — tanya penyuluh**
-7. Go online → Sinkronkan sekarang
-8. Tentang Model → story (Indonesia data gap) + DECAFIA-only training source
+5. Save → History
+6. Blurry/dark photo → **Uncertain — ask extension officer**
+7. Go online → Syncrhonize now
+8. About Model → story (Indonesia data gap) + DECAFIA-only training source
 
 ## Train on DECAFIA (recommended for field accuracy)
 
