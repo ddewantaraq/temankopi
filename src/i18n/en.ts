@@ -114,6 +114,27 @@ export const en: Messages = {
       'We want to build a labeled Indonesian leaf dataset with farmers and extension officers.',
     ],
   },
+  onboarding: {
+    ariaLabel: 'Teman Kopi onboarding',
+    skip: 'Skip',
+    next: 'Next',
+    start: 'Start',
+    welcomeTitle: 'Welcome to Teman Kopi',
+    welcomeBody:
+      'Save time · Keep trust. Coffee leaf screening on your phone — evidence for an extension officer, not a made-up diagnosis.',
+    photoTitle: 'Clear leaf photos',
+    photoBody:
+      'Use the rear camera, fill the frame with the leaf, and use enough light. Avoid blur, darkness, or only a partial leaf.',
+    examplesTitle: 'Example screening results',
+    examplesBody:
+      'The model screens healthy / possible pest / possible disease. If unsure — fail-safe: ask an extension officer.',
+    exampleHealthy: 'Example: healthy',
+    examplePest: 'Example: pest',
+    exampleDisease: 'Example: disease',
+    installTitle: 'Install & continue',
+    installBody:
+      'Add Teman Kopi to your home screen. After one online visit, screening works without a network — then share the observation with an extension officer.',
+  },
   labels: {
     healthy: 'Healthy / no clear symptoms',
     pest_like: 'Possible pest-related symptoms',

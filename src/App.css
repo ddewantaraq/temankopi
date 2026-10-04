@@ -454,3 +454,146 @@ select {
   margin: 0 0 0.5rem;
   font-family: var(--font-display);
 }
+
+.onboarding {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  width: min(480px, 100%);
+  margin: 0 auto;
+  padding: calc(1rem + env(safe-area-inset-top)) 1.15rem
+    calc(1.15rem + env(safe-area-inset-bottom));
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(196, 163, 90, 0.18), transparent 45%),
+    radial-gradient(ellipse at 100% 20%, rgba(27, 67, 50, 0.12), transparent 40%),
+    var(--bg, #f3efe6);
+  color: var(--ink);
+  box-sizing: border-box;
+  height: 100dvh;
+}
+
+.onboarding-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.onboarding-count {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.onboarding-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-height: 0;
+  padding-top: 1.25rem;
+  overflow: auto;
+}
+
+.onboarding-body h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 5vw, 1.9rem);
+  line-height: 1.2;
+  color: var(--brand);
+}
+
+.onboarding-copy {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.onboarding-hero {
+  margin: 0.35rem 0 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(27, 67, 50, 0.14);
+  background: var(--card);
+}
+
+.onboarding-hero img {
+  display: block;
+  width: 100%;
+  height: min(42vh, 280px);
+  object-fit: cover;
+}
+
+.onboarding-hero-soft {
+  opacity: 0.95;
+}
+
+.onboarding-examples {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+}
+
+.onboarding-examples li {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.onboarding-examples img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid rgba(27, 67, 50, 0.12);
+  background: var(--card);
+}
+
+.onboarding-examples span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--brand);
+  text-align: center;
+}
+
+.onboarding-dots {
+  display: flex;
+  gap: 0.4rem;
+  padding: 1rem 0 0.85rem;
+}
+
+.onboarding-dots span {
+  flex: 1;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: rgba(27, 67, 50, 0.14);
+}
+
+.onboarding-dots span.active {
+  background: var(--brand);
+}
+
+.onboarding-actions {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.onboarding-actions .btn {
+  min-height: 2.85rem;
+}
+
+.onboarding-actions .btn.ghost {
+  flex: 1;
+}
+
+.onboarding-actions .btn.primary {
+  flex: 1.35;
+}
+

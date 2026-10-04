@@ -112,6 +112,27 @@ export const id = {
       'Kami ingin membangun dataset daun berlabel dari lapangan Indonesia bersama petani dan penyuluh.',
     ],
   },
+  onboarding: {
+    ariaLabel: 'Pengenalan Teman Kopi',
+    skip: 'Lewati',
+    next: 'Lanjut',
+    start: 'Mulai',
+    welcomeTitle: 'Selamat datang di Teman Kopi',
+    welcomeBody:
+      'Hemat waktu · Jaga kepercayaan. Skrining daun kopi di ponsel — bukti untuk penyuluh, bukan diagnosis yang mengada-ada.',
+    photoTitle: 'Foto daun yang jelas',
+    photoBody:
+      'Gunakan kamera belakang, dekatkan daun, dan pastikan cahaya cukup. Hindari buram, terlalu gelap, atau hanya sebagian daun.',
+    examplesTitle: 'Contoh hasil skrining',
+    examplesBody:
+      'Model memberi skrining sehat / kemungkinan hama / kemungkinan penyakit. Jika belum yakin — fail-safe: tanya penyuluh.',
+    exampleHealthy: 'Contoh: sehat',
+    examplePest: 'Contoh: hama',
+    exampleDisease: 'Contoh: penyakit',
+    installTitle: 'Pasang & lanjutkan',
+    installBody:
+      'Tambahkan ke layar utama agar Teman Kopi siap di kebun. Setelah dibuka sekali online, skrining bisa jalan tanpa jaringan — lalu bagikan observasi ke penyuluh.',
+  },
   labels: {
     healthy: 'Sehat / tidak ada gejala jelas',
     pest_like: 'Kemungkinan gejala hama',
