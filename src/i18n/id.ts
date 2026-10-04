@@ -15,7 +15,7 @@ export const id = {
     defaultPlot: 'Kebun Kopi 01',
     observations: 'observasi',
     waitingSync: 'menunggu sinkron',
-    eyebrow: 'Skrining daun · Di lapangan',
+    eyebrow: 'Hemat waktu · Jaga kepercayaan',
   },
   scan: {
     title: 'Periksa Tanaman',
