@@ -33,14 +33,14 @@ npm run dev
 
 ## Train on DECAFIA (recommended for field accuracy)
 
-1. Use `~/Downloads/decafia.zip` (CoffeeLeaf-CO / Zenodo) — verified OK  
+1. Use `/path/to/decafia.zip` (CoffeeLeaf-CO / Zenodo) — verified OK  
 2. See [training/README.md](training/README.md) or `training/colab_train_teman_kopi.ipynb`  
    - **Colab:** steps 1–5 only → download `teman_kopi_keras.keras`  
    - **Local:** TF.js export with Python 3.11/3.12 + `tensorflowjs` (not Colab)
 
 ```bash
 # After downloading the Keras file from Colab (Python 3.11/3.12 venv):
-python training/export_tfjs.py --model ~/Downloads/teman_kopi_keras.keras --out public/models/teman-kopi
+python training/export_tfjs.py --model /path/to/teman_kopi_keras.keras --out public/models/teman-kopi
 
 # Or full local train + export:
 python3.11 training/prepare_decafia.py --source /tmp/decafia_raw --out training/data/decafia_remapped
