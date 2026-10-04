@@ -79,14 +79,22 @@ export const en: Messages = {
   },
   about: {
     title: 'About the Model',
+    storyTitle: 'The story behind this model',
+    story: [
+      'Indonesian coffee farmers need leaf screening that works offline on a phone — then a clear bridge to an extension officer, not a made-up diagnosis.',
+      'Labeled Indonesian coffee-leaf photo sets for pest and disease screening are still limited and not yet sufficient to train a trustworthy on-device model.',
+      'So Teman Kopi starts from an open dataset we can ship today: DECAFIA / CoffeeLeaf-CO. The model is compressed to TensorFlow.js, runs on-device, and fails safe to an extension officer when confidence is not enough.',
+      'Next: collect Indonesian field photos with farmers and extension officers so the following model version is grounded in local plots.',
+    ],
     runtime:
       'The model runs on-device via TensorFlow.js (WebGL). No cloud API is used for analysis.',
     modelBlurb:
-      'Production model: MobileNetV3Small 3-class (healthy / possible pest / possible disease), trained on Colab with DECAFIA / CoffeeLeaf-CO (Zenodo), exported to on-device TensorFlow.js (graph-model, WebGL). Includes confidence and photo-quality gates. Pipeline: training/ (Colab steps 1–5 → .keras, then local export_tfjs.py).',
-    limitationsTitle: 'Limitations',
+      'Production model: MobileNetV3Small 3-class (healthy / possible pest / possible disease), trained only on DECAFIA / CoffeeLeaf-CO, exported to on-device TensorFlow.js (graph-model, WebGL). Includes confidence and photo-quality gates.',
+    limitationsTitle: 'Limitations & next steps',
     guardrailsTitle: 'Fail-safe & human in the loop',
-    sourcesTitle: 'Data sources',
-    contextTitle: 'Indonesia context',
+    sourcesTitle: 'Training source',
+    sourcesRole:
+      'The only dataset used to train the production model (field coffee-leaf photos from Colombia).',
     guardrails: [
       'If confidence < 55% or the top two scores are close → Not sure enough — ask an extension officer (do not guess).',
       'Dark / blurry / unclear photos are rejected before inference.',
@@ -94,13 +102,11 @@ export const en: Messages = {
       'The farmer and extension officer remain the decision-makers.',
     ],
     limitations: [
-      'Primary training data is DECAFIA / CoffeeLeaf-CO from Colombia — not Indonesian field photos; domain gap remains.',
-      'Coffee variety, phone camera, and plot lighting can lower accuracy versus dataset validation numbers.',
+      'Training photos come from Colombia, not Indonesian plots — a domain gap remains; that is why fail-safe to an extension officer matters.',
+      'Coffee variety, phone camera, and plot lighting can change results versus dataset validation numbers.',
       'Results are screening aids for the next observation step only, not a definitive diagnosis.',
+      'We want to build a labeled Indonesian leaf dataset with farmers and extension officers.',
     ],
-    nasaBody:
-      'demo plot {location}: average temperature {temp}°C, period rainfall {rain} mm. {interpretation}',
-    bpsBody: '{problem}',
   },
   labels: {
     healthy: 'Healthy / no clear symptoms',

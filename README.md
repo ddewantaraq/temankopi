@@ -29,7 +29,7 @@ npm run dev
 5. Simpan → Riwayat
 6. Blurry/dark photo → **Belum cukup yakin — tanya penyuluh**
 7. Go online → Sinkronkan sekarang
-8. Tentang Model → DECAFIA / RoCoLe + BPS + NASA POWER links
+8. Tentang Model → story (Indonesia data gap) + DECAFIA-only training source
 
 ## Train on DECAFIA (recommended for field accuracy)
 

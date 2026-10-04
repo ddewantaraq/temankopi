@@ -77,14 +77,22 @@ export const id = {
   },
   about: {
     title: 'Tentang Model',
+    storyTitle: 'Cerita di balik model ini',
+    story: [
+      'Petani kopi Indonesia butuh skrining daun yang bisa jalan offline di ponsel — lalu jembatan yang jelas ke penyuluh, bukan diagnosis yang mengada-ada.',
+      'Sayangnya, kumpulan foto daun kopi berlabel dari kebun Indonesia untuk skrining hama/penyakit masih terbatas dan belum cukup tersedia untuk melatih model on-device yang andal.',
+      'Karena itu Teman Kopi memulai dari dataset terbuka yang bisa kami kirim hari ini: DECAFIA / CoffeeLeaf-CO. Modelnya dikompres ke TensorFlow.js dan berjalan di perangkat, dengan fail-safe ke penyuluh bila data belum cukup yakin.',
+      'Langkah berikutnya: bersama petani dan penyuluh mengumpulkan foto lapangan Indonesia, agar versi model berikutnya lebih dekat dengan kebun di sini.',
+    ],
     runtime:
       'Model berjalan di perangkat lewat TensorFlow.js (WebGL). Tidak ada API cloud untuk analisis.',
     modelBlurb:
-      'Model produksi: MobileNetV3Small 3 kelas (sehat / kemungkinan hama / kemungkinan penyakit), dilatih di Colab pada DECAFIA / CoffeeLeaf-CO (Zenodo), diekspor ke TensorFlow.js (graph-model, WebGL) untuk jalan on-device. Ada gerbang keyakinan & kualitas foto. Skrip: training/ (Colab steps 1–5 → .keras, lalu export_tfjs.py lokal).',
-    limitationsTitle: 'Keterbatasan',
+      'Model produksi: MobileNetV3Small 3 kelas (sehat / kemungkinan hama / kemungkinan penyakit), dilatih hanya pada DECAFIA / CoffeeLeaf-CO, diekspor ke TensorFlow.js (graph-model, WebGL). Ada gerbang keyakinan & kualitas foto.',
+    limitationsTitle: 'Keterbatasan & langkah berikutnya',
     guardrailsTitle: 'Fail-safe & manusia di loop',
-    sourcesTitle: 'Sumber data',
-    contextTitle: 'Konteks Indonesia',
+    sourcesTitle: 'Sumber pelatihan',
+    sourcesRole:
+      'Satu-satunya dataset yang dipakai melatih model produksi (foto daun kopi lapangan, Kolombia).',
     guardrails: [
       'Jika keyakinan < 55% atau dua skor teratas saling dekat → Belum cukup yakin — tanya penyuluh (bukan menebak).',
       'Foto gelap/buram/kurang jelas ditolak sebelum inferensi.',
@@ -92,13 +100,11 @@ export const id = {
       'Petani + penyuluh tetap pengambil keputusan.',
     ],
     limitations: [
-      'Data pelatihan utama DECAFIA / CoffeeLeaf-CO berasal dari Kolombia — bukan foto lapangan Indonesia; domain gap tetap ada.',
-      'Varietas kopi, kamera ponsel, dan pencahayaan kebun dapat menurunkan akurasi dibanding angka validasi dataset.',
+      'Foto pelatihan berasal dari Kolombia, bukan kebun Indonesia — ada jarak domain; itulah mengapa fail-safe ke penyuluh penting.',
+      'Varietas kopi, kamera ponsel, dan pencahayaan kebun dapat mengubah hasil dibanding angka validasi dataset.',
       'Hasil hanya skrining untuk langkah observasi berikutnya, bukan diagnosis pasti.',
+      'Kami ingin membangun dataset daun berlabel dari lapangan Indonesia bersama petani dan penyuluh.',
     ],
-    nasaBody:
-      'plot demo {location}: suhu rata-rata {temp}°C, curah hujan periode {rain} mm. {interpretation}',
-    bpsBody: '{problem}',
   },
   labels: {
     healthy: 'Sehat / tidak ada gejala jelas',
