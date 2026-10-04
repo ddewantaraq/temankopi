@@ -82,7 +82,7 @@ export const en: Messages = {
     runtime:
       'The model runs on-device via TensorFlow.js (WASM). No cloud API is used for analysis.',
     modelBlurb:
-      'On-device 3-class model (healthy / possible pest / possible disease) via TensorFlow.js, plus confidence and photo-quality gates. Training pipeline DECAFIA / CoffeeLeaf-CO (Zenodo) → MobileNetV3Small is in training/ (Colab / train.py).',
+      'Production model: MobileNetV3Small 3-class (healthy / possible pest / possible disease), trained on Colab with DECAFIA / CoffeeLeaf-CO (Zenodo), exported to on-device TensorFlow.js (WASM). Includes confidence and photo-quality gates. Pipeline: training/ (Colab steps 1–5 → .keras, then local export_tfjs.py).',
     limitationsTitle: 'Limitations',
     guardrailsTitle: 'Fail-safe & human in the loop',
     sourcesTitle: 'Data sources',
@@ -94,9 +94,9 @@ export const en: Messages = {
       'The farmer and extension officer remain the decision-makers.',
     ],
     limitations: [
-      'Primary training data (DECAFIA / CoffeeLeaf-CO, Colombia + open sources) is not Indonesia-specific — domain gap exists.',
-      'Coffee variety, camera, and field conditions can reduce accuracy.',
-      'Results are screening aids for the next observation step only.',
+      'Primary training data is DECAFIA / CoffeeLeaf-CO from Colombia — not Indonesian field photos; domain gap remains.',
+      'Coffee variety, phone camera, and plot lighting can lower accuracy versus dataset validation numbers.',
+      'Results are screening aids for the next observation step only, not a definitive diagnosis.',
     ],
     nasaBody:
       'demo plot {location}: average temperature {temp}°C, period rainfall {rain} mm. {interpretation}',

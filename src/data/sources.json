@@ -3,7 +3,7 @@
     {
       "id": "decafia",
       "name": "DECAFIA / CoffeeLeaf-CO v2",
-      "role": "Pelatihan model klasifikasi 3 kelas (Zenodo, lapangan)",
+      "role": "Dataset pelatihan model produksi saat ini (Zenodo; CoffeeLeaf-CO / lapangan Kolombia)",
       "url": "https://doi.org/10.5281/zenodo.19931903",
       "record": "https://zenodo.org/records/19931904",
       "doi": "10.5281/zenodo.19931903"
@@ -18,7 +18,7 @@
     {
       "id": "bracol",
       "name": "BRACOL",
-      "role": "Dataset kopi alternatif (Mendeley; diganti DECAFIA jika unduhan rusak)",
+      "role": "Dataset alternatif (Mendeley); diganti DECAFIA untuk train produksi",
       "url": "https://data.mendeley.com/datasets/yy2k5y8mxg/1",
       "doi": "10.17632/yy2k5y8mxg.1"
     }

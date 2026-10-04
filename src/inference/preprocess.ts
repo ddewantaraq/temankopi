@@ -1,7 +1,7 @@
 import * as tf from '@tensorflow/tfjs'
 
-/** Matches bootstrap model; BRACOL MobileNet export may use 224 — classifier reads model input shape. */
-export let INPUT_SIZE = 96
+/** Default until model loads; DECAFIA MobileNetV3Small export uses 224 — classifier reads input shape. */
+export let INPUT_SIZE = 224
 
 export function setInputSize(size: number) {
   if (size > 0) INPUT_SIZE = size

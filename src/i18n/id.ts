@@ -80,7 +80,7 @@ export const id = {
     runtime:
       'Model berjalan di perangkat lewat TensorFlow.js (WASM). Tidak ada API cloud untuk analisis.',
     modelBlurb:
-      'Model on-device 3 kelas (sehat / kemungkinan hama / kemungkinan penyakit) lewat TensorFlow.js, plus gerbang keyakinan & kualitas foto. Pipeline pelatihan DECAFIA / CoffeeLeaf-CO (Zenodo) → MobileNetV3Small tersedia di training/ (Colab / train.py).',
+      'Model produksi: MobileNetV3Small 3 kelas (sehat / kemungkinan hama / kemungkinan penyakit), dilatih di Colab pada DECAFIA / CoffeeLeaf-CO (Zenodo), diekspor ke TensorFlow.js (WASM) untuk jalan on-device. Ada gerbang keyakinan & kualitas foto. Skrip: training/ (Colab steps 1–5 → .keras, lalu export_tfjs.py lokal).',
     limitationsTitle: 'Keterbatasan',
     guardrailsTitle: 'Fail-safe & manusia di loop',
     sourcesTitle: 'Sumber data',
@@ -92,9 +92,9 @@ export const id = {
       'Petani + penyuluh tetap pengambil keputusan.',
     ],
     limitations: [
-      'Data pelatihan utama (DECAFIA / CoffeeLeaf-CO, Kolombia + sumber terbuka) bukan khusus Indonesia — ada domain gap.',
-      'Varietas kopi, kamera, dan kondisi lapangan berbeda dapat menurunkan akurasi.',
-      'Hasil hanya skrining untuk langkah observasi berikutnya.',
+      'Data pelatihan utama DECAFIA / CoffeeLeaf-CO berasal dari Kolombia — bukan foto lapangan Indonesia; domain gap tetap ada.',
+      'Varietas kopi, kamera ponsel, dan pencahayaan kebun dapat menurunkan akurasi dibanding angka validasi dataset.',
+      'Hasil hanya skrining untuk langkah observasi berikutnya, bukan diagnosis pasti.',
     ],
     nasaBody:
       'plot demo {location}: suhu rata-rata {temp}°C, curah hujan periode {rain} mm. {interpretation}',

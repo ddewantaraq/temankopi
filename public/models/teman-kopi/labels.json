@@ -5,5 +5,5 @@
     "disease_like"
   ],
   "inputSize": 224,
-  "note": "Bootstrap CNN; retrain on BRACOL via training/train.py"
+  "note": "MobileNetV3Small trained on DECAFIA / CoffeeLeaf-CO (Colab), exported locally via training/export_tfjs.py"
 }

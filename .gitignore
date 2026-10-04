@@ -29,3 +29,4 @@ dist-ssr
 training/data/
 training/artifacts/
 *.keras
+.venv*
