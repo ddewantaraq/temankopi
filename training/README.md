@@ -3,7 +3,7 @@
 ## Primary dataset: DECAFIA / CoffeeLeaf-CO v2 (Zenodo)
 
 - DOI: https://doi.org/10.5281/zenodo.19931903  
-- Local zip you prepared: `~/Downloads/decafia.zip` (valid)
+- Local zip you prepared: `/path/to/decafia.zip` (valid)
 
 Remap YOLO detection labels → image classification:
 
@@ -29,7 +29,7 @@ Colab runs **steps 1–5 only** (GPU check, unzip, remap, train). Download the K
 
 1. Runtime → GPU  
 2. Upload:
-   - `/content/decafia.zip` (from `~/Downloads/decafia.zip`)
+   - `/content/decafia.zip` (from `/path/to/decafia.zip`)
    - `/content/training/prepare_decafia.py`
    - `/content/training/train.py`
 3. Upload and open `training/colab_train_teman_kopi.ipynb`  
@@ -53,7 +53,7 @@ pip install "tensorflow>=2.15,<2.20" "tensorflowjs==4.22.0"
 # pip install "numpy<2"
 
 python training/export_tfjs.py \
-  --model ~/Downloads/teman_kopi_keras.keras \
+  --model /path/to/teman_kopi_keras.keras \
   --out public/models/teman-kopi
 
 # Export writes a TF.js **graph-model** (Keras 3 layers JSON is not loadable in TF.js for MobileNetV3).
@@ -66,7 +66,7 @@ test -f public/models/teman-kopi/model.json && npm run build
 ## Full local CLI (train + export on laptop)
 
 ```bash
-unzip ~/Downloads/decafia.zip -d /tmp/decafia_raw
+unzip /path/to/decafia.zip -d /tmp/decafia_raw
 python3.11 training/prepare_decafia.py --source /tmp/decafia_raw --out training/data/decafia_remapped
 python3.11 training/train.py --data-dir training/data/decafia_remapped --epochs 8 --out training/artifacts/teman_kopi_keras.keras
 python3.11 training/export_tfjs.py --model training/artifacts/teman_kopi_keras.keras --out public/models/teman-kopi
@@ -77,8 +77,3 @@ Optional metrics:
 ```bash
 python3.11 training/evaluate.py --model training/artifacts/teman_kopi_keras.keras --data-dir training/data/decafia_remapped/val
 ```
-
-### External validation (optional)
-
-- RoCoLe: https://data.mendeley.com/datasets/c5yvn32dzg/2  
-- BRACOL: https://data.mendeley.com/datasets/yy2k5y8mxg/1 (use only if zip passes `unzip -t`)
