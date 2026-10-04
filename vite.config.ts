@@ -3,9 +3,6 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [react()],
-  optimizeDeps: {
-    exclude: ['@tensorflow/tfjs-backend-wasm'],
-  },
   build: {
     chunkSizeWarningLimit: 1600,
   },

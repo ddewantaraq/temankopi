@@ -83,6 +83,16 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url)
   if (url.origin !== self.location.origin) return
+  // Dev servers (Vite): never intercept — cache-first breaks HMR / blank page
+  if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') return
+  // Never cache-intercept Vite / HMR / source modules
+  if (
+    url.pathname.startsWith('/@') ||
+    url.pathname.startsWith('/src/') ||
+    url.pathname.startsWith('/node_modules/')
+  ) {
+    return
+  }
 
   event.respondWith(
     caches.open(CACHE).then(async (cache) => {

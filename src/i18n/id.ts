@@ -78,9 +78,9 @@ export const id = {
   about: {
     title: 'Tentang Model',
     runtime:
-      'Model berjalan di perangkat lewat TensorFlow.js (WASM). Tidak ada API cloud untuk analisis.',
+      'Model berjalan di perangkat lewat TensorFlow.js (WebGL). Tidak ada API cloud untuk analisis.',
     modelBlurb:
-      'Model produksi: MobileNetV3Small 3 kelas (sehat / kemungkinan hama / kemungkinan penyakit), dilatih di Colab pada DECAFIA / CoffeeLeaf-CO (Zenodo), diekspor ke TensorFlow.js (WASM) untuk jalan on-device. Ada gerbang keyakinan & kualitas foto. Skrip: training/ (Colab steps 1–5 → .keras, lalu export_tfjs.py lokal).',
+      'Model produksi: MobileNetV3Small 3 kelas (sehat / kemungkinan hama / kemungkinan penyakit), dilatih di Colab pada DECAFIA / CoffeeLeaf-CO (Zenodo), diekspor ke TensorFlow.js (graph-model, WebGL) untuk jalan on-device. Ada gerbang keyakinan & kualitas foto. Skrip: training/ (Colab steps 1–5 → .keras, lalu export_tfjs.py lokal).',
     limitationsTitle: 'Keterbatasan',
     guardrailsTitle: 'Fail-safe & manusia di loop',
     sourcesTitle: 'Sumber data',

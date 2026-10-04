@@ -80,9 +80,9 @@ export const en: Messages = {
   about: {
     title: 'About the Model',
     runtime:
-      'The model runs on-device via TensorFlow.js (WASM). No cloud API is used for analysis.',
+      'The model runs on-device via TensorFlow.js (WebGL). No cloud API is used for analysis.',
     modelBlurb:
-      'Production model: MobileNetV3Small 3-class (healthy / possible pest / possible disease), trained on Colab with DECAFIA / CoffeeLeaf-CO (Zenodo), exported to on-device TensorFlow.js (WASM). Includes confidence and photo-quality gates. Pipeline: training/ (Colab steps 1–5 → .keras, then local export_tfjs.py).',
+      'Production model: MobileNetV3Small 3-class (healthy / possible pest / possible disease), trained on Colab with DECAFIA / CoffeeLeaf-CO (Zenodo), exported to on-device TensorFlow.js (graph-model, WebGL). Includes confidence and photo-quality gates. Pipeline: training/ (Colab steps 1–5 → .keras, then local export_tfjs.py).',
     limitationsTitle: 'Limitations',
     guardrailsTitle: 'Fail-safe & human in the loop',
     sourcesTitle: 'Data sources',

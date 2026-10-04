@@ -2,7 +2,7 @@
 
 Offline-first Bahasa Indonesia PWA for coffee field screening (**Small AI**).
 
-- On-device vision via **TensorFlow.js** (WASM) — **MobileNetV3Small** trained on **DECAFIA / CoffeeLeaf-CO**
+- On-device vision via **TensorFlow.js** (WebGL) — **MobileNetV3Small** trained on **DECAFIA / CoffeeLeaf-CO**
 - Fail-safe: uncertain → ask a penyuluh (no guessing)
 - Local observations in IndexedDB + store-and-forward sync demo
 - No backend required for the MVP
@@ -53,6 +53,8 @@ python3.11 training/export_tfjs.py --model training/artifacts/teman_kopi_keras.k
 Everyday: **push or merge to `main`** — Vercel Git integration auto-deploys production (see [DEPLOY.md](DEPLOY.md)).
 
 `npm run build` stamps `public/sw.js` with a cache name hashed from `public/models/teman-kopi/*`, so a new model busts the PWA cache after users open the site online once (no clear-data step).
+
+TF.js ships a **graph-model** export (Keras 3 MobileNetV3 layers JSON is not TF.js-compatible). App loads it with `tf.loadGraphModel`.
 
 Manual fallback only:
 

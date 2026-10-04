@@ -56,6 +56,9 @@ python training/export_tfjs.py \
   --model ~/Downloads/teman_kopi_keras.keras \
   --out public/models/teman-kopi
 
+# Export writes a TF.js **graph-model** (Keras 3 layers JSON is not loadable in TF.js for MobileNetV3).
+# Legacy layers JSON repair only: python training/export_tfjs.py --patch-only --out public/models/teman-kopi
+
 # Confirm model.json, then build / deploy
 test -f public/models/teman-kopi/model.json && npm run build
 ```

@@ -1,8 +1,4 @@
 import * as tf from '@tensorflow/tfjs'
-import { setWasmPaths } from '@tensorflow/tfjs-backend-wasm'
-import wasmSimdPath from '@tensorflow/tfjs-backend-wasm/dist/tfjs-backend-wasm-simd.wasm?url'
-import wasmPath from '@tensorflow/tfjs-backend-wasm/dist/tfjs-backend-wasm.wasm?url'
-import wasmThreadedSimdPath from '@tensorflow/tfjs-backend-wasm/dist/tfjs-backend-wasm-threaded-simd.wasm?url'
 import type { ScreeningLabel } from '../db/schema'
 import { imageToTensor, setInputSize } from './preprocess'
 import { checkImageQuality } from './quality'
@@ -14,35 +10,28 @@ const CONFIDENCE_THRESHOLD = 0.55
 const TOP2_MARGIN = 0.1
 const MODEL_URL = '/models/teman-kopi/model.json'
 
-let modelPromise: Promise<tf.LayersModel> | null = null
+let modelPromise: Promise<tf.GraphModel> | null = null
 let backendReady: Promise<void> | null = null
 
 async function ensureBackend() {
   if (!backendReady) {
     backendReady = (async () => {
-      setWasmPaths({
-        'tfjs-backend-wasm.wasm': wasmPath,
-        'tfjs-backend-wasm-simd.wasm': wasmSimdPath,
-        'tfjs-backend-wasm-threaded-simd.wasm': wasmThreadedSimdPath,
-      })
-      try {
-        await tf.setBackend('wasm')
-        await tf.ready()
-      } catch {
-        await tf.setBackend('webgl')
-        await tf.ready()
-      }
+      // WebGL only: @tensorflow/tfjs-backend-wasm pulls a threaded worker
+      // that Vite cannot resolve (`wasmWorkerContents`), which blanked the app.
+      await tf.setBackend('webgl')
+      await tf.ready()
     })()
   }
   return backendReady
 }
 
-export async function loadModel(): Promise<tf.LayersModel> {
+export async function loadModel(): Promise<tf.GraphModel> {
   await ensureBackend()
   if (!modelPromise) {
-    modelPromise = tf.loadLayersModel(MODEL_URL).then((model) => {
+    modelPromise = tf.loadGraphModel(MODEL_URL).then((model) => {
       const dim = model.inputs[0]?.shape?.[1]
       if (typeof dim === 'number' && dim > 0) setInputSize(dim)
+      else setInputSize(224)
       return model
     })
   }

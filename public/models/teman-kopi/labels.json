@@ -5,5 +5,5 @@
     "disease_like"
   ],
   "inputSize": 224,
-  "note": "MobileNetV3Small trained on DECAFIA / CoffeeLeaf-CO (Colab), exported locally via training/export_tfjs.py"
+  "note": "MobileNetV3Small trained on DECAFIA / CoffeeLeaf-CO (Colab); TF.js graph export via export_tfjs.py"
 }
