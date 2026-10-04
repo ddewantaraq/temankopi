@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Teman Kopi — teleprompter</title>
+    <style>
+      :root {
+        --bg: #0f1410;
+        --ink: #f2f5ef;
+        --muted: #9aab96;
+        --accent: #d2b36a;
+        --card: #1b2620;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        padding: 0.75rem 1rem;
+        background: color-mix(in srgb, var(--bg) 92%, black);
+        border-bottom: 1px solid #2a382f;
+        z-index: 2;
+      }
+      button {
+        appearance: none;
+        border: 1px solid #3a4d40;
+        background: var(--card);
+        color: var(--ink);
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+        cursor: pointer;
+        font: inherit;
+      }
+      button[aria-pressed="true"] {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      main {
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: 1.25rem 1.25rem 4rem;
+      }
+      h1 {
+        font-size: 1.1rem;
+        color: var(--accent);
+        margin: 0 0 1rem;
+        font-weight: 600;
+      }
+      .script {
+        display: none;
+        font-size: clamp(1.25rem, 3.5vw, 1.65rem);
+        line-height: 1.55;
+        white-space: pre-wrap;
+      }
+      .script.active {
+        display: block;
+      }
+      .meta {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button type="button" data-tab="intro" aria-pressed="true">1 · Intro</button>
+      <button type="button" data-tab="demo" aria-pressed="false">2 · Demo</button>
+      <button type="button" data-tab="tech" aria-pressed="false">3 · Tech</button>
+    </header>
+    <main>
+      <p class="meta">Read aloud · aim under 60s · LinkedIn in video description</p>
+
+      <section id="intro" class="script active">
+        <h1>Team introduction</h1>
+Hi — I’m Dimas Dewantara, solo builder of Teman Kopi.
+
+I’m a software builder focused on practical AI that works in the field, not only in the cloud. For this World Bank Small AI challenge, I asked: how can one better agricultural decision happen on a basic smartphone — offline — for Indonesian coffee farmers?
+
+Teman Kopi is my answer: an offline PWA that screens a coffee leaf photo on-device, saves the observation, and connects evidence to a penyuluh — an extension officer — without pretending to be a diagnosis.
+
+I designed, trained, and shipped it end to end: vision model, fail-safe logic, Bahasa UI, and deployment.
+
+One builder, one decision loop, built for trust.
+      </section>
+
+      <section id="demo" class="script">
+        <h1>Product demo (VO)</h1>
+[A · Problem → solution]
+
+In the coffee plot, farmers often see leaf spots but lack one clear next step — and guessing wrong erodes trust in advisory. Teman Kopi is Small AI on the phone: screen the leaf on-device, document the observation, and connect that evidence to a penyuluh — an extension officer — for the next decision.
+
+[B · Demo · match your taps]
+
+Airplane mode on — the model still runs. I photograph a leaf, add what I see, and analyze on-device. Screening result and next steps appear; I save to history. If confidence is low, we fail safe: ask a penyuluh — no fake diagnosis, no spray recipe. One better step with trusted human advice.
+      </section>
+
+      <section id="tech" class="script">
+        <h1>Technical walkthrough</h1>
+Technically, Teman Kopi is Small AI on the edge.
+
+Vision: MobileNetV3Small, three classes — healthy, pest-like, disease-like — trained on DECAFIA CoffeeLeaf-CO, exported to TensorFlow.js, inferred with WebGL in the browser. No cloud API for analysis.
+
+Trust layers: photo quality gate, confidence threshold, top-two margin — otherwise uncertain. Guidance text is rule-based, not an LLM, so we never invent pesticide doses.
+
+Product shell: Vite PWA, service worker caches the model for offline use, IndexedDB stores observations, WhatsApp hands evidence to an extension officer.
+
+Honest limit: labeled Indonesian leaf data isn’t enough yet, so we start from an open dataset and fail safe — path forward is local field photos with farmers and penyuluh.
+
+That’s the stack: compress, run offline, stay humble.
+      </section>
+    </main>
+    <script>
+      const buttons = [...document.querySelectorAll("button[data-tab]")];
+      const sections = [...document.querySelectorAll(".script")];
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.tab;
+          buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+          sections.forEach((s) => s.classList.toggle("active", s.id === id));
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Teman Kopi — end-to-end sequence</title>
+    <style>
+      :root {
+        --bg: #1a2e1f;
+        --card: #243d2a;
+        --ink: #f4f7f2;
+        --muted: #b7c9b4;
+        --accent: #c4a35a;
+        --line: #3d5c42;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 1.25rem 1.5rem 1.5rem;
+        font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+        color: var(--ink);
+        background:
+          radial-gradient(ellipse at 20% 0%, #2f4a34 0%, transparent 50%),
+          radial-gradient(ellipse at 100% 100%, #3a2f1a 0%, transparent 45%),
+          var(--bg);
+      }
+      .slide {
+        width: min(1200px, 100%);
+      }
+      h1 {
+        margin: 0 0 0.25rem;
+        font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+        font-weight: 600;
+      }
+      .sub {
+        margin: 0 0 1rem;
+        color: var(--muted);
+        font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+        font-family: system-ui, sans-serif;
+      }
+      .diagram {
+        padding: 0.75rem 0.5rem 0.25rem;
+        border-radius: 1rem;
+        border: 1px solid var(--line);
+        background: color-mix(in srgb, var(--card) 92%, black);
+        overflow: auto;
+      }
+      .diagram .mermaid {
+        display: flex;
+        justify-content: center;
+      }
+      .foot {
+        margin-top: 0.85rem;
+        font-family: system-ui, sans-serif;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .hint {
+        margin-top: 0.35rem;
+        font-family: system-ui, sans-serif;
+        font-size: 0.75rem;
+        color: color-mix(in srgb, var(--muted) 80%, white);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="slide">
+      <h1>Teman Kopi — end-to-end flow</h1>
+      <p class="sub">On-device screening · fail-safe · evidence to penyuluh · no cloud API for analysis</p>
+      <div class="diagram">
+        <pre class="mermaid">
+sequenceDiagram
+  participant Farmer
+  participant PWA
+  participant SW as ServiceWorker
+  participant Cam as Camera
+  participant Q as QualityGate
+  participant Model as TFJS_WebGL
+  participant Dec as DecisionEngine
+  participant DB as IndexedDB
+  participant Ext as Penyuluh
+
+  Note over PWA,SW: First online visit caches shell plus model
+  Farmer->>PWA: Open Teman Kopi
+  PWA->>SW: Register and cache assets
+  SW-->>PWA: model.json and weights ready offline
+
+  Farmer->>PWA: Periksa Tanaman
+  PWA->>Cam: Rear camera or gallery
+  Cam-->>PWA: Leaf image
+  Farmer->>PWA: Symptoms plus Analyze
+
+  PWA->>Q: checkImageQuality
+  alt Too dark blurry or flat
+    Q-->>PWA: qualityFail
+    PWA->>Dec: uncertain fail-safe
+  else Quality OK
+    Q-->>PWA: ok
+    PWA->>Model: predict WebGL on device
+    Model-->>PWA: healthy pest disease scores
+    alt Low confidence or close top-2
+      PWA->>Dec: uncertain fail-safe
+    else Confident label
+      PWA->>Dec: label plus scores plus symptoms
+    end
+  end
+
+  Dec-->>PWA: title summary nextActions disclaimer
+  PWA->>DB: saveObservation
+  PWA-->>Farmer: Result screen
+  Farmer->>Ext: WhatsApp share evidence
+        </pre>
+      </div>
+      <p class="foot">temankopi.vercel.app · Dimas Dewantara</p>
+      <p class="hint">Open this page online once (Mermaid CDN), then fullscreen / screen-record.</p>
+    </main>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+          primaryColor: '#243d2a',
+          primaryTextColor: '#f4f7f2',
+          primaryBorderColor: '#3d5c42',
+          lineColor: '#c4a35a',
+          secondaryColor: '#1a2e1f',
+          tertiaryColor: '#2f4a34',
+          noteBkgColor: '#2f4a34',
+          noteTextColor: '#f4f7f2',
+          actorBkg: '#243d2a',
+          actorBorder: '#c4a35a',
+          actorTextColor: '#f4f7f2',
+          signalColor: '#f4f7f2',
+          signalTextColor: '#f4f7f2',
+        },
+        sequence: { actorMargin: 28, messageMargin: 28, mirrorActors: false },
+      })
+    </script>
+  </body>
+</html>
