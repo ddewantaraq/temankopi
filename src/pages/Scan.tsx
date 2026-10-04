@@ -1,21 +1,31 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Capture } from '../camera/Capture'
+import { LanguageToggle } from '../components/LanguageToggle'
 import { buildDecision } from '../decision/engine'
-import { ensureDefaultPlot } from '../db/schema'
 import { saveObservation } from '../db/observations'
+import { ensureDefaultPlot } from '../db/schema'
+import { useLocale } from '../i18n/LocaleContext'
 import { classifyImage } from '../inference/classifier'
-import { id as t } from '../i18n/id'
 
-const SYMPTOM_KEYS = Object.keys(t.symptoms) as (keyof typeof t.symptoms)[]
-const STAGE_KEYS = Object.keys(t.stages) as (keyof typeof t.stages)[]
+const SYMPTOM_KEYS = [
+  'discoloration',
+  'spots',
+  'holes',
+  'insects',
+  'fruit',
+  'slowGrowth',
+] as const
+
+const STAGE_KEYS = ['vegetative', 'flowering', 'fruiting', 'harvest'] as const
 
 export function Scan() {
   const navigate = useNavigate()
+  const { locale, t } = useLocale()
   const [dataUrl, setDataUrl] = useState<string | null>(null)
   const [imageEl, setImageEl] = useState<HTMLImageElement | null>(null)
   const [symptoms, setSymptoms] = useState<string[]>([])
-  const [stage, setStage] = useState<keyof typeof t.stages>('vegetative')
+  const [stage, setStage] = useState<(typeof STAGE_KEYS)[number]>('vegetative')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -34,13 +44,16 @@ export function Scan() {
     try {
       const plot = await ensureDefaultPlot()
       const classification = await classifyImage(imageEl)
-      const decision = buildDecision({
-        label: classification.label,
-        confidence: classification.confidence,
-        symptoms,
-        stage,
-        qualityFail: classification.qualityFail,
-      })
+      const decision = buildDecision(
+        {
+          label: classification.label,
+          confidence: classification.confidence,
+          symptoms,
+          stage,
+          qualityFail: classification.qualityFail,
+        },
+        locale,
+      )
 
       const id = await saveObservation({
         plotId: plot.id!,
@@ -57,11 +70,7 @@ export function Scan() {
 
       navigate(`/hasil/${id}`)
     } catch (e) {
-      setError(
-        e instanceof Error
-          ? e.message
-          : 'Gagal menganalisis. Pastikan model sudah terunduh.',
-      )
+      setError(e instanceof Error ? e.message : t.scan.errorAnalyze)
     } finally {
       setBusy(false)
     }
@@ -71,9 +80,10 @@ export function Scan() {
     <main className="page">
       <header className="topbar">
         <Link to="/" className="back">
-          ← Beranda
+          {t.backHome}
         </Link>
         <h2>{t.scan.title}</h2>
+        <LanguageToggle />
       </header>
 
       <Capture
@@ -103,7 +113,7 @@ export function Scan() {
         <h3>{t.scan.stageTitle}</h3>
         <select
           value={stage}
-          onChange={(e) => setStage(e.target.value as keyof typeof t.stages)}
+          onChange={(e) => setStage(e.target.value as (typeof STAGE_KEYS)[number])}
         >
           {STAGE_KEYS.map((key) => (
             <option key={key} value={key}>

@@ -1,5 +1,7 @@
-import guidance from '../data/guidance.json'
+import guidanceEn from '../data/guidance.en.json'
+import guidanceId from '../data/guidance.id.json'
 import type { ScreeningLabel } from '../db/schema'
+import type { Locale } from '../i18n'
 
 export interface DecisionInput {
   label: ScreeningLabel
@@ -18,16 +20,13 @@ export interface DecisionOutput {
   showRetake: boolean
 }
 
-const SYMPTOM_HINTS: Record<string, string> = {
-  holes: 'Daun berlubang mendukung pemeriksaan hama di lapangan.',
-  insects: 'Serangga terlihat — prioritaskan cek tanaman sekitar.',
-  spots: 'Bintik pada daun — amati apakah pola menyebar.',
-  discoloration: 'Perubahan warna daun — bandingkan dengan daun sehat di plot yang sama.',
-  fruit: 'Masalah pada buah — dokumentasikan dan konsultasikan ke penyuluh.',
-  slowGrowth: 'Pertumbuhan lambat — catat riwayat cuaca/lahan untuk penyuluh.',
-}
+const GUIDANCE = {
+  id: guidanceId,
+  en: guidanceEn,
+} as const
 
-export function buildDecision(input: DecisionInput): DecisionOutput {
+export function buildDecision(input: DecisionInput, locale: Locale = 'id'): DecisionOutput {
+  const guidance = GUIDANCE[locale] ?? GUIDANCE.id
   const entry = guidance.labels[input.label] ?? guidance.labels.uncertain
   const actions = [...entry.actions]
 
@@ -42,19 +41,17 @@ export function buildDecision(input: DecisionInput): DecisionOutput {
     }
   }
 
-  // Enrich with farmer-reported symptoms (observational only — never prescriptions).
   for (const symptom of input.symptoms) {
-    const hint = SYMPTOM_HINTS[symptom]
+    const hint = guidance.symptomHints[symptom as keyof typeof guidance.symptomHints]
     if (hint && !actions.includes(hint)) {
       actions.push(hint)
     }
   }
 
   if (input.stage === 'harvest') {
-    actions.push('Dokumentasikan observasi pascapanen untuk dibahas dengan penyuluh.')
+    actions.push(guidance.harvestNote)
   }
 
-  // Strip anything that looks like banned prescription language.
   const safeActions = actions.filter((a) => {
     const lower = a.toLowerCase()
     return !guidance.bannedPatterns.some((b) => lower.includes(b.toLowerCase()))

@@ -1,11 +1,12 @@
 import { useRef, useState } from 'react'
-import { id as t } from '../i18n/id'
+import { useT } from '../i18n/LocaleContext'
 
 interface CaptureProps {
   onCapture: (dataUrl: string, image: HTMLImageElement) => void
 }
 
 export function Capture({ onCapture }: CaptureProps) {
+  const t = useT()
   const cameraRef = useRef<HTMLInputElement>(null)
   const galleryRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview] = useState<string | null>(null)
@@ -29,7 +30,7 @@ export function Capture({ onCapture }: CaptureProps) {
     <div className="capture">
       <div className="capture-frame">
         {preview ? (
-          <img src={preview} alt="Pratinjau daun kopi" />
+          <img src={preview} alt={t.capture.previewAlt} />
         ) : (
           <p className="capture-placeholder">{t.scan.tip}</p>
         )}

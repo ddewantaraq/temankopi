@@ -40,11 +40,23 @@
       ]
     }
   },
+  "symptomHints": {
+    "holes": "Daun berlubang mendukung pemeriksaan hama di lapangan.",
+    "insects": "Serangga terlihat — prioritaskan cek tanaman sekitar.",
+    "spots": "Bintik pada daun — amati apakah pola menyebar.",
+    "discoloration": "Perubahan warna daun — bandingkan dengan daun sehat di plot yang sama.",
+    "fruit": "Masalah pada buah — dokumentasikan dan konsultasikan ke penyuluh.",
+    "slowGrowth": "Pertumbuhan lambat — catat riwayat cuaca/lahan untuk penyuluh."
+  },
+  "harvestNote": "Dokumentasikan observasi pascapanen untuk dibahas dengan penyuluh.",
   "disclaimer": "Hasil ini adalah bantuan skrining lapangan, bukan diagnosis pasti. Keputusan perlakuan tetap pada petani bersama penyuluh.",
   "bannedPatterns": [
     "Diagnosis:",
     "pestisida",
     "dosis",
-    "Pastinya penyakit"
+    "Pastinya penyakit",
+    "pesticide",
+    "dosage",
+    "Definitely disease"
   ]
 }

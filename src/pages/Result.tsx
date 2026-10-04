@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { LanguageToggle } from '../components/LanguageToggle'
 import { buildDecision } from '../decision/engine'
 import { db, type Observation } from '../db/schema'
-import { id as t } from '../i18n/id'
+import { useLocale } from '../i18n/LocaleContext'
 
 export function Result() {
   const { id: rawId } = useParams()
   const navigate = useNavigate()
+  const { locale, t } = useLocale()
   const [obs, setObs] = useState<Observation | null>(null)
 
   useEffect(() => {
@@ -21,32 +23,44 @@ export function Result() {
   if (!obs) {
     return (
       <main className="page">
-        <p>Memuat hasil…</p>
+        <p>{t.result.loading}</p>
       </main>
     )
   }
 
-  const decision = buildDecision({
-    label: obs.label,
-    confidence: obs.confidence,
-    symptoms: obs.symptoms,
-    stage: obs.stage,
-    qualityFail: obs.qualityFail,
-  })
+  const decision = buildDecision(
+    {
+      label: obs.label,
+      confidence: obs.confidence,
+      symptoms: obs.symptoms,
+      stage: obs.stage,
+      qualityFail: obs.qualityFail,
+    },
+    locale,
+  )
 
   const isUncertain = obs.label === 'uncertain'
+  const shareText = [
+    t.result.sharePrefix,
+    `${t.result.shareResult}: ${decision.title}`,
+    decision.summary,
+    t.result.shareFooter,
+  ].join('\n')
 
   return (
     <main className="page result">
       <header className="topbar">
         <Link to="/" className="back">
-          ← Beranda
+          {t.backHome}
         </Link>
-        <h2>Hasil Skrining</h2>
+        <h2>{t.result.title}</h2>
+        <LanguageToggle />
       </header>
 
       <div className={`result-card ${isUncertain ? 'uncertain' : ''}`}>
-        <p className="eyebrow">{isUncertain ? 'Fail-safe' : 'Skrining lapangan'}</p>
+        <p className="eyebrow">
+          {isUncertain ? t.result.failSafeBadge : t.result.screeningBadge}
+        </p>
         <h1>{decision.title}</h1>
         {!isUncertain && (
           <p className="confidence">
@@ -57,7 +71,7 @@ export function Result() {
       </div>
 
       {obs.imageDataUrl && (
-        <img className="result-thumb" src={obs.imageDataUrl} alt="Foto observasi" />
+        <img className="result-thumb" src={obs.imageDataUrl} alt={t.result.photoAlt} />
       )}
 
       <section className="panel">
@@ -80,9 +94,7 @@ export function Result() {
         {decision.showAskExpert && (
           <a
             className="btn secondary large"
-            href={`https://wa.me/?text=${encodeURIComponent(
-              `Teman Kopi — observasi lapangan\nHasil: ${decision.title}\n${decision.summary}\n(Bukan diagnosis. Mohon arahan penyuluh.)`,
-            )}`}
+            href={`https://wa.me/?text=${encodeURIComponent(shareText)}`}
             target="_blank"
             rel="noreferrer"
           >

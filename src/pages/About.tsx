@@ -1,52 +1,45 @@
 import { Link } from 'react-router-dom'
+import { LanguageToggle } from '../components/LanguageToggle'
 import bps from '../data/bps-coffee.json'
 import nasa from '../data/nasa-demo.json'
 import sources from '../data/sources.json'
-import { id as t } from '../i18n/id'
+import { formatMessage } from '../i18n'
+import { useT } from '../i18n/LocaleContext'
 
 export function About() {
+  const t = useT()
+
   return (
     <main className="page about">
       <header className="topbar">
         <Link to="/" className="back">
-          ← Beranda
+          {t.backHome}
         </Link>
         <h2>{t.about.title}</h2>
+        <LanguageToggle />
       </header>
 
       <section className="panel">
         <h3>{t.appName}</h3>
         <p>{t.about.runtime}</p>
-        <p>
-          Model on-device 3 kelas (sehat / kemungkinan hama / kemungkinan penyakit) lewat
-          TensorFlow.js, plus gerbang keyakinan & kualitas foto. Pipeline pelatihan DECAFIA /
-          CoffeeLeaf-CO (Zenodo) → MobileNetV3Small tersedia di <code>training/</code> (Colab /
-          train.py).
-        </p>
+        <p>{t.about.modelBlurb}</p>
       </section>
 
       <section className="panel">
         <h3>{t.about.guardrailsTitle}</h3>
         <ul>
-          <li>
-            Jika keyakinan &lt; 55% atau dua skor teratas saling dekat →{' '}
-            <strong>Belum cukup yakin — tanya penyuluh</strong> (bukan menebak).
-          </li>
-          <li>Foto gelap/buram/kurang jelas ditolak sebelum inferensi.</li>
-          <li>Tidak ada diagnosis spesies pasti dan tidak ada resep pestisida/dosis.</li>
-          <li>Petani + penyuluh tetap pengambil keputusan.</li>
+          {t.about.guardrails.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
         </ul>
       </section>
 
       <section className="panel">
         <h3>{t.about.limitationsTitle}</h3>
         <ul>
-          <li>
-            Data pelatihan utama (DECAFIA / CoffeeLeaf-CO, Kolombia + sumber terbuka) bukan
-            khusus Indonesia — ada domain gap.
-          </li>
-          <li>Varietas kopi, kamera, dan kondisi lapangan berbeda dapat menurunkan akurasi.</li>
-          <li>Hasil hanya skrining untuk langkah observasi berikutnya.</li>
+          {t.about.limitations.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
         </ul>
       </section>
 
@@ -70,15 +63,21 @@ export function About() {
         <p>
           <a href={nasa.sourceUrl} target="_blank" rel="noreferrer">
             NASA POWER
-          </a>{' '}
-          — plot demo {nasa.location.name}: suhu rata-rata {nasa.summary.avgTempC}°C, curah
-          hujan periode {nasa.summary.totalRainfallMm} mm. {nasa.summary.interpretation}
+          </a>
+          {' — '}
+          {formatMessage(t.about.nasaBody, {
+            location: nasa.location.name,
+            temp: nasa.summary.avgTempC,
+            rain: nasa.summary.totalRainfallMm,
+            interpretation: nasa.summary.interpretation,
+          })}
         </p>
         <p>
           <a href={bps.sourceUrl} target="_blank" rel="noreferrer">
             BPS
-          </a>{' '}
-          — {bps.problemLink}
+          </a>
+          {' — '}
+          {formatMessage(t.about.bpsBody, { problem: bps.problemLink })}
         </p>
         <ul>
           {bps.regions.map((r) => (

@@ -45,6 +45,10 @@ python3 training/export_tfjs.py --model training/artifacts/teman_kopi_keras.kera
 
 ## Deploy
 
+Everyday: **push or merge to `main`** — Vercel Git integration auto-deploys production (see [DEPLOY.md](DEPLOY.md)).
+
+Manual fallback only:
+
 ```bash
 npm run build
 npx vercel --prod --yes

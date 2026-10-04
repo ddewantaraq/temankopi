@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { LanguageToggle } from '../components/LanguageToggle'
 import { listObservations } from '../db/observations'
 import type { Observation } from '../db/schema'
+import { formatMessage, localeTag } from '../i18n'
+import { useLocale } from '../i18n/LocaleContext'
 import { getSyncSummary, syncPendingObservations } from '../sync/queue'
-import { id as t } from '../i18n/id'
 
 export function History() {
+  const { locale, t } = useLocale()
   const [rows, setRows] = useState<Observation[]>([])
   const [pending, setPending] = useState(0)
   const [synced, setSynced] = useState(0)
@@ -26,13 +29,13 @@ export function History() {
   async function onSync() {
     const result = await syncPendingObservations()
     if (!result.online) {
-      setMessage('Masih offline — observasi tetap tersimpan lokal.')
+      setMessage(t.history.offlineMsg)
       return
     }
     setMessage(
       result.synced > 0
-        ? `${result.synced} observasi ditandai tersinkron (store-and-forward demo).`
-        : 'Tidak ada antrean yang menunggu.',
+        ? formatMessage(t.history.syncedMsg, { n: result.synced })
+        : t.history.nonePendingMsg,
     )
     await refresh()
   }
@@ -41,9 +44,10 @@ export function History() {
     <main className="page">
       <header className="topbar">
         <Link to="/" className="back">
-          ← Beranda
+          {t.backHome}
         </Link>
         <h2>{t.history.title}</h2>
+        <LanguageToggle />
       </header>
 
       <section className="sync-bar">
@@ -73,7 +77,7 @@ export function History() {
                 <div>
                   <strong>{t.labels[row.label]}</strong>
                   <p>
-                    {new Date(row.createdAt).toLocaleString('id-ID')} ·{' '}
+                    {new Date(row.createdAt).toLocaleString(localeTag(locale))} ·{' '}
                     {row.synced ? t.history.synced : t.history.pending}
                   </p>
                 </div>

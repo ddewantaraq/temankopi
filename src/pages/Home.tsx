@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { LanguageToggle } from '../components/LanguageToggle'
 import { OnlineBadge } from '../components/OnlineBadge'
 import { ensureDefaultPlot } from '../db/schema'
+import { useT } from '../i18n/LocaleContext'
 import { getSyncSummary } from '../sync/queue'
-import { id as t } from '../i18n/id'
 
 export function Home() {
+  const t = useT()
   const [plotName, setPlotName] = useState<string>(t.home.defaultPlot)
   const [total, setTotal] = useState(0)
   const [pending, setPending] = useState(0)
@@ -24,10 +26,11 @@ export function Home() {
     <main className="page home">
       <header className="topbar">
         <OnlineBadge />
+        <LanguageToggle />
       </header>
 
       <section className="hero">
-        <p className="eyebrow">Small AI · Offline</p>
+        <p className="eyebrow">{t.home.eyebrow}</p>
         <h1>{t.appName}</h1>
         <p className="lede">{t.tagline}</p>
       </section>

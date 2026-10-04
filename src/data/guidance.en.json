@@ -1,0 +1,62 @@
+{
+  "labels": {
+    "healthy": {
+      "title": "No clear symptoms visible",
+      "summary": "The visual pattern is more consistent with a leaf that appears healthy in this photo.",
+      "actions": [
+        "Keep monitoring the plants regularly.",
+        "Retake a photo if color changes or spots appear.",
+        "Save a field note to share with an extension officer if needed."
+      ]
+    },
+    "pest_like": {
+      "title": "Possible pest-related symptoms",
+      "summary": "The visual pattern is more consistent with possible pest symptoms. This is field screening, not a definitive diagnosis.",
+      "actions": [
+        "Check 5 plants around this location.",
+        "Look at the underside of the leaves.",
+        "Take another photo if the same pattern appears.",
+        "Save the observation to share with an extension officer."
+      ]
+    },
+    "disease_like": {
+      "title": "Possible disease-related symptoms",
+      "summary": "The visual pattern is more consistent with possible leaf disease symptoms. This is field screening, not a definitive diagnosis.",
+      "actions": [
+        "Check leaves on nearby plants.",
+        "Note whether symptoms are spreading to other plants.",
+        "Take a second clearer photo.",
+        "Share this note with an extension officer for the next decision."
+      ]
+    },
+    "uncertain": {
+      "title": "Not sure enough",
+      "summary": "The photo or information is not enough for a definitive answer — do not guess.",
+      "actions": [
+        "Retake the photo with a clear leaf and enough light.",
+        "Fill in the symptoms you see in the field.",
+        "Contact an extension officer / ask an expert.",
+        "Save the observation so evidence remains available."
+      ]
+    }
+  },
+  "symptomHints": {
+    "holes": "Holes in the leaf support checking for pests in the field.",
+    "insects": "Insects visible — prioritize checking nearby plants.",
+    "spots": "Spots on the leaf — watch whether the pattern is spreading.",
+    "discoloration": "Leaf color change — compare with healthy leaves on the same plot.",
+    "fruit": "Fruit problems — document and consult an extension officer.",
+    "slowGrowth": "Slow growth — note weather/plot history for the extension officer."
+  },
+  "harvestNote": "Document the post-harvest observation to discuss with an extension officer.",
+  "disclaimer": "This result is a field screening aid, not a definitive diagnosis. Treatment decisions remain with the farmer and extension officer.",
+  "bannedPatterns": [
+    "Diagnosis:",
+    "pestisida",
+    "dosis",
+    "Pastinya penyakit",
+    "pesticide",
+    "dosage",
+    "Definitely disease"
+  ]
+}

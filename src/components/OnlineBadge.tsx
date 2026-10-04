@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { id as t } from '../i18n/id'
+import { useT } from '../i18n/LocaleContext'
 import { isOnline } from '../sync/queue'
 
 export function OnlineBadge() {
+  const t = useT()
   const [online, setOnline] = useState(isOnline())
 
   useEffect(() => {
