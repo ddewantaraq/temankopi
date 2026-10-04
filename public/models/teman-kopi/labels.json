@@ -1,0 +1,9 @@
+{
+  "labels": [
+    "healthy",
+    "pest_like",
+    "disease_like"
+  ],
+  "inputSize": 96,
+  "note": "Bootstrap CNN for offline demo. Retrain MobileNetV3Small on BRACOL via training/train.py or Colab notebook."
+}

@@ -1,0 +1,50 @@
+{
+  "vision": [
+    {
+      "id": "bracol",
+      "name": "BRACOL",
+      "role": "Pelatihan model klasifikasi 3 kelas",
+      "url": "https://data.mendeley.com/datasets/yy2k5y8mxg/1",
+      "doi": "10.17632/yy2k5y8mxg.1"
+    },
+    {
+      "id": "rocole",
+      "name": "RoCoLe",
+      "role": "Validasi eksternal (smartphone lapangan)",
+      "url": "https://data.mendeley.com/datasets/c5yvn32dzg/2",
+      "doi": "10.17632/c5yvn32dzg.2"
+    },
+    {
+      "id": "decafia",
+      "name": "DECAFIA / CoffeeLeaf-CO",
+      "role": "Validasi lapangan perkebunan (Android)",
+      "url": "https://doi.org/10.5281/zenodo.19931903",
+      "record": "https://zenodo.org/records/19931904"
+    }
+  ],
+  "context": [
+    {
+      "id": "nasa-power",
+      "name": "NASA POWER",
+      "role": "Konteks iklim plot demo (bundel offline)",
+      "url": "https://power.larc.nasa.gov/",
+      "docs": "https://power.larc.nasa.gov/docs/services/api/"
+    },
+    {
+      "id": "bps",
+      "name": "BPS Indonesia",
+      "role": "Data produksi kopi untuk grounding masalah",
+      "url": "https://www.bps.go.id/"
+    },
+    {
+      "id": "bmkg",
+      "name": "BMKG",
+      "role": "Integrasi iklim Indonesia (tahap lanjut)",
+      "url": "https://dataonline.bmkg.go.id/"
+    }
+  ],
+  "brief": {
+    "name": "Shared ChatGPT build brief",
+    "url": "https://chatgpt.com/share/6ac13cdd-ebec-83ec-8d63-4555dc2523f9"
+  }
+}

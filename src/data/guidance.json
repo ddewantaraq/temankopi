@@ -1,0 +1,50 @@
+{
+  "labels": {
+    "healthy": {
+      "title": "Tidak terlihat gejala yang jelas",
+      "summary": "Pola visual lebih konsisten dengan daun yang tampak sehat pada foto ini.",
+      "actions": [
+        "Tetap pantau tanaman secara berkala.",
+        "Ambil foto ulang jika muncul perubahan warna atau bintik.",
+        "Simpan catatan lapangan untuk dibagikan ke penyuluh bila perlu."
+      ]
+    },
+    "pest_like": {
+      "title": "Kemungkinan gejala terkait hama",
+      "summary": "Pola visual lebih konsisten dengan kemungkinan gejala hama. Ini skrining lapangan, bukan diagnosis pasti.",
+      "actions": [
+        "Periksa 5 tanaman di sekitar lokasi ini.",
+        "Lihat bagian bawah daun.",
+        "Ambil foto tambahan jika pola yang sama muncul.",
+        "Simpan observasi untuk dibagikan kepada penyuluh."
+      ]
+    },
+    "disease_like": {
+      "title": "Kemungkinan gejala terkait penyakit",
+      "summary": "Pola visual lebih konsisten dengan kemungkinan gejala penyakit daun. Ini skrining lapangan, bukan diagnosis pasti.",
+      "actions": [
+        "Periksa daun di sekitar tanaman yang sama.",
+        "Catat apakah gejala menyebar ke tanaman lain.",
+        "Ambil foto kedua dari sudut yang lebih jelas.",
+        "Bagikan catatan ini kepada penyuluh untuk keputusan berikutnya."
+      ]
+    },
+    "uncertain": {
+      "title": "Belum cukup yakin",
+      "summary": "Data atau foto belum cukup untuk jawaban definitif — jangan menebak.",
+      "actions": [
+        "Foto ulang dengan daun terlihat jelas dan pencahayaan cukup.",
+        "Isi gejala yang Anda lihat di lapangan.",
+        "Hubungi penyuluh / tanya orang yang ahli.",
+        "Simpan observasi agar bukti tetap tersedia."
+      ]
+    }
+  },
+  "disclaimer": "Hasil ini adalah bantuan skrining lapangan, bukan diagnosis pasti. Keputusan perlakuan tetap pada petani bersama penyuluh.",
+  "bannedPatterns": [
+    "Diagnosis:",
+    "pestisida",
+    "dosis",
+    "Pastinya penyakit"
+  ]
+}
