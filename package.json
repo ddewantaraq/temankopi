@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "node scripts/stamp-sw.mjs && vite",
+    "build": "node scripts/stamp-sw.mjs && tsc -b && vite build",
+    "stamp-sw": "node scripts/stamp-sw.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "train:bootstrap": "node training/export_bootstrap_model.mjs",

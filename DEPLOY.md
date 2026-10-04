@@ -57,7 +57,9 @@ Local CLI link metadata lives under `.vercel/` (gitignored). Do not commit token
 
 ## Smoke after deploy
 
-1. Open https://temankopi.vercel.app
+1. Open https://temankopi.vercel.app **online once** after deploy (new service worker installs; cache name is stamped from model file hashes — users do not need to clear site data).
 2. Toggle **ID | EN** on the home topbar
 3. Airplane mode → Periksa Tanaman → analyze offline
 4. Riwayat + Tentang Model still load offline after first visit
+
+Service worker: `npm run build` / `npm run stamp-sw` regenerates `public/sw.js` with `CACHE=teman-kopi-<hash>` from `public/models/teman-kopi/*`. Changing the model automatically busts the old SW cache on the next build + online visit.
