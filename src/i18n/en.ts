@@ -5,6 +5,12 @@ export const en: Messages = {
   tagline: 'Offline field AI assistant for coffee farmers',
   online: 'Online',
   offline: 'Offline',
+  status: {
+    pwaInfoLabel: 'PWA info',
+    pwaInfoTitle: 'Install & use without network',
+    pwaInfoBody:
+      'Install Teman Kopi on your phone from the browser (Add to Home Screen / Install app). After you open it once while online, the app and model stay cached — screening still works without a network.',
+  },
   langId: 'ID',
   langEn: 'EN',
   langLabel: 'Language',

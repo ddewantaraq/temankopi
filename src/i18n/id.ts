@@ -3,6 +3,12 @@ export const id = {
   tagline: 'Asisten AI lapangan offline untuk petani kopi',
   online: 'Online',
   offline: 'Offline',
+  status: {
+    pwaInfoLabel: 'Info PWA',
+    pwaInfoTitle: 'Instal & pakai tanpa jaringan',
+    pwaInfoBody:
+      'Pasang Teman Kopi di ponsel lewat browser (Tambahkan ke Layar Utama / Install app). Setelah dibuka sekali saat online, aplikasi dan model tersimpan — skrining tetap bisa jalan tanpa jaringan.',
+  },
   langId: 'ID',
   langEn: 'EN',
   langLabel: 'Bahasa',
