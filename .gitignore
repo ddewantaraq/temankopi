@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vercel
+.env*
+
+# Local training data (do not commit datasets)
+training/data/
+training/artifacts/
+*.keras

@@ -19,8 +19,9 @@ export function About() {
         <p>{t.about.runtime}</p>
         <p>
           Model on-device 3 kelas (sehat / kemungkinan hama / kemungkinan penyakit) lewat
-          TensorFlow.js, plus gerbang keyakinan & kualitas foto. Pipeline pelatihan BRACOL →
-          MobileNetV3Small tersedia di <code>training/</code> (Colab / train.py).
+          TensorFlow.js, plus gerbang keyakinan & kualitas foto. Pipeline pelatihan DECAFIA /
+          CoffeeLeaf-CO (Zenodo) → MobileNetV3Small tersedia di <code>training/</code> (Colab /
+          train.py).
         </p>
       </section>
 
@@ -40,7 +41,10 @@ export function About() {
       <section className="panel">
         <h3>{t.about.limitationsTitle}</h3>
         <ul>
-          <li>Data pelatihan utama (BRACOL) bukan khusus Indonesia — ada domain gap.</li>
+          <li>
+            Data pelatihan utama (DECAFIA / CoffeeLeaf-CO, Kolombia + sumber terbuka) bukan
+            khusus Indonesia — ada domain gap.
+          </li>
           <li>Varietas kopi, kamera, dan kondisi lapangan berbeda dapat menurunkan akurasi.</li>
           <li>Hasil hanya skrining untuk langkah observasi berikutnya.</li>
         </ul>

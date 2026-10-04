@@ -7,7 +7,15 @@ import argparse
 from pathlib import Path
 
 import tensorflow as tf
-import tensorflowjs as tfjs
+
+try:
+    import tensorflowjs as tfjs
+except AttributeError as exc:
+    raise SystemExit(
+        "tensorflowjs failed to import (often NumPy>=2 on Colab). "
+        'Run: pip install "numpy<2" "tensorflowjs==4.22.0" then retry.\n'
+        f"Original error: {exc}"
+    ) from exc
 
 
 def main() -> None:

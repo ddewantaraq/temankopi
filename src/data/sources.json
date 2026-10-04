@@ -1,25 +1,26 @@
 {
   "vision": [
     {
-      "id": "bracol",
-      "name": "BRACOL",
-      "role": "Pelatihan model klasifikasi 3 kelas",
-      "url": "https://data.mendeley.com/datasets/yy2k5y8mxg/1",
-      "doi": "10.17632/yy2k5y8mxg.1"
+      "id": "decafia",
+      "name": "DECAFIA / CoffeeLeaf-CO v2",
+      "role": "Pelatihan model klasifikasi 3 kelas (Zenodo, lapangan)",
+      "url": "https://doi.org/10.5281/zenodo.19931903",
+      "record": "https://zenodo.org/records/19931904",
+      "doi": "10.5281/zenodo.19931903"
     },
     {
       "id": "rocole",
       "name": "RoCoLe",
-      "role": "Validasi eksternal (smartphone lapangan)",
+      "role": "Validasi eksternal (smartphone lapangan; tidak dicampur train)",
       "url": "https://data.mendeley.com/datasets/c5yvn32dzg/2",
       "doi": "10.17632/c5yvn32dzg.2"
     },
     {
-      "id": "decafia",
-      "name": "DECAFIA / CoffeeLeaf-CO",
-      "role": "Validasi lapangan perkebunan (Android)",
-      "url": "https://doi.org/10.5281/zenodo.19931903",
-      "record": "https://zenodo.org/records/19931904"
+      "id": "bracol",
+      "name": "BRACOL",
+      "role": "Dataset kopi alternatif (Mendeley; diganti DECAFIA jika unduhan rusak)",
+      "url": "https://data.mendeley.com/datasets/yy2k5y8mxg/1",
+      "doi": "10.17632/yy2k5y8mxg.1"
     }
   ],
   "context": [
