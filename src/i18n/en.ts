@@ -17,7 +17,7 @@ export const en: Messages = {
     defaultPlot: 'Coffee Plot 01',
     observations: 'observations',
     waitingSync: 'waiting to sync',
-    eyebrow: 'Small AI · Offline',
+    eyebrow: 'Leaf screening · In the field',
   },
   scan: {
     title: 'Check Plant',
